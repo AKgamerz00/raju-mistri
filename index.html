@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="hi">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>raju.mistri</title>
+
+    <link rel="stylesheet" href="style.css" />
+  </head>
+
+  <body>
+    <div class="website">
+      <!-- CLOCK -->
+      <div class="clock" id="clock">12:00 pm</div>
+
+      <!-- PLAYLIST BUTTON -->
+      <button class="playlist-btn" onclick="openPlaylist()">PLAYLIST</button>
+
+      <!-- MAIN TITLE -->
+      <div class="title">राजू मिस्त्री</div>
+
+      <!-- MUSIC PLAYER -->
+      <div class="music-player">
+        <!-- SONG IMAGE -->
+
+        <div class="album-container">
+          <img id="albumArt" src="image/raju mistri.jpg" alt="राजू मिस्त्री" />
+        </div>
+
+        <!-- SONG INFORMATION -->
+
+        <div class="song-info">
+          <div class="song-name" id="songName">Loading...</div>
+
+          <div class="artist">राजू मिस्त्री</div>
+
+          <!-- PROGRESS BAR -->
+
+          <div class="progress-container">
+            <input type="range" id="progress" value="0" min="0" max="100" />
+          </div>
+
+          <!-- SONG TIME -->
+
+          <div class="time">
+            <span id="currentTime"> 0:00 </span>
+
+            <span id="duration"> 0:00 </span>
+          </div>
+        </div>
+
+        <!-- MUSIC CONTROLS -->
+
+        <div class="controls">
+          <button id="previousBtn" class="control-btn" title="Previous">
+            ⏮
+          </button>
+
+          <button id="playBtn" class="play-btn" title="Play">▶</button>
+
+          <button id="nextBtn" class="control-btn" title="Next">⏭</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- AUDIO -->
+
+    <audio id="audio"></audio>
+
+    <!-- JAVASCRIPT -->
+
+    <script src="script.js"></script>
+  </body>
+</html>

@@ -1,0 +1,256 @@
+<!doctype html>
+<html lang="hi">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>राजू मिस्त्री</title>
+
+    <style>
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        margin: 0;
+        min-height: 100vh;
+
+        font-family: Arial, Helvetica, sans-serif;
+
+        background: #241510;
+
+        color: white;
+
+        padding: 40px 20px;
+      }
+
+      /* Heading */
+
+      h1 {
+        text-align: center;
+
+        font-size: 36px;
+
+        margin: 10px 0 30px;
+      }
+
+      /* Back button */
+
+      .back {
+        display: block;
+
+        margin: 0 auto 30px;
+
+        padding: 10px 22px;
+
+        border: none;
+
+        border-radius: 8px;
+
+        background: white;
+
+        color: #241510;
+
+        font-size: 15px;
+
+        cursor: pointer;
+
+        transition: 0.2s;
+      }
+
+      .back:hover {
+        transform: scale(1.05);
+
+        background: #eeeeee;
+      }
+
+      /* Playlist container */
+
+      .playlist {
+        width: 100%;
+
+        max-width: 750px;
+
+        margin: auto;
+      }
+
+      /* Individual songs */
+
+      .song {
+        padding: 16px 20px;
+
+        margin-bottom: 8px;
+
+        border-radius: 10px;
+
+        background: rgba(255, 255, 255, 0.08);
+
+        border: 1px solid rgba(255, 255, 255, 0.08);
+
+        cursor: pointer;
+
+        transition:
+          background 0.2s,
+          transform 0.2s;
+      }
+
+      .song:hover {
+        background: rgba(255, 255, 255, 0.18);
+
+        transform: translateX(5px);
+      }
+
+      /* Mobile */
+
+      @media (max-width: 600px) {
+        body {
+          padding: 25px 12px;
+        }
+
+        h1 {
+          font-size: 30px;
+        }
+
+        .song {
+          padding: 14px;
+        }
+      }
+    </style>
+  </head>
+
+  <body>
+    <!-- PAGE TITLE -->
+
+    <h1>राजू मिस्त्री</h1>
+
+    <!-- BACK BUTTON -->
+
+    <button class="back" onclick="goBack()">← Back</button>
+
+    <!-- SONGS WILL APPEAR HERE -->
+
+    <div class="playlist" id="playlist"></div>
+
+    <script>
+      /* =========================================
+           SONG LIST
+        ========================================= */
+
+      const songs = [
+        "Aankhein Khuli.mp3",
+        "Aankhon Mein Base Ho Tum.mp3",
+        "Aaye Ho Meri Zindagi Mein.mp3",
+        "Aisi Deewangi Dekhi Nahi Kahi .mp3",
+        "Bahut Jatate Ho Chah Humse.mp3",
+        "Bahut Pyar Karte Hai.mp3",
+        "Barsaat Ke Mausam Mein.mp3",
+        "Bholi Si Surat.mp3",
+        "Chalte Chalte.mp3",
+        "Chand Se Parda.mp3",
+        "Chhupana Bhi Nahi aata .mp3",
+        "Chhupana Bhi Nahi Aata.mp3",
+        "Chunnari Chunnari.mp3",
+        "Chura Ke Dil Mera.mp3",
+        "College Ki Ladkiyon.mp3",
+        "Dil Deewana.mp3",
+        "Dil Ne Ye Kaha Hai Dil Se.mp3",
+        "Dil Ne Ye Kaha Hai Dil see .mp3",
+        "Dulhe Ka Sehra.mp3",
+        "Ek Garam Chai Ki Pyali.mp3",
+        "Humko Humise Chura Lo.mp3",
+        "Humko Sirf Tumse Pyar Hai.mp3",
+        "Jeeta tha jiske liye.mp3",
+        "Jeeye To Jeeye Kaise.mp3",
+        "Kitaben Bahut Si.mp3",
+        "Kitna Pyaara Tujhe Rabne Banaya.mp3",
+        "Lal Dupatta.mp3",
+        "Main Agar Saamne.mp3",
+        "Main Yahaan Hoon.mp3",
+        "Mehndi Laga Ke Rakhna.mp3",
+        "Mehndi Laga Ke Rakhnaa.mp3",
+        "Mujhse Mohabbat Ka Izhaar.mp3",
+        "Pairon Mein Bandhan hai.mp3",
+        "Pardesi Pardesi.mp3",
+        "Pehli Pehli Baar Mohabbat Ki Hai.mp3",
+        "Saajanji Ghar Aaye.mp3",
+        "Saaton Janam Main Tere.mp3",
+        "Sochenge Tumhe Pyar.mp3",
+        "Sona Kitna Sona Hai.mp3",
+        "Soni Soni.mp3",
+        "Taaron Ka Chamakta.mp3",
+        "Tu Cheez Badi Hai Mast Mast.mp3",
+        "Tu Jo Hans Hans Ke Sanam.mp3",
+        "Tu Pyar Hai Kisi Aur Ka.mp3",
+        "Tum Dil Ki Dhadkan Main.mp3",
+        "Tumsa Koi Pyaara.mp3",
+      ];
+
+      /* =========================================
+           CREATE PLAYLIST
+        ========================================= */
+
+      const playlist = document.getElementById("playlist");
+
+      songs.forEach((song, index) => {
+        const div = document.createElement("div");
+
+        div.className = "song";
+
+        /*
+                Remove .mp3 from the name
+                shown on the website.
+            */
+
+        const songName = song.replace(/\.mp3$/i, "");
+
+        div.textContent = `${index + 1}. ${songName}`;
+
+        /* =====================================
+               WHEN A SONG IS CLICKED
+            ===================================== */
+
+        div.onclick = () => {
+          /*
+                    Save the selected song number.
+                */
+
+          localStorage.setItem("selectedSong", index);
+
+          /*
+                    Remove the previous song's
+                    saved position.
+
+                    The new song will therefore
+                    start from its normal position.
+                */
+
+          localStorage.removeItem("savedPosition");
+
+          /*
+                    Return to the main player.
+                */
+
+          window.location.href = "index.html";
+        };
+
+        playlist.appendChild(div);
+      });
+
+      /* =========================================
+           BACK BUTTON
+        ========================================= */
+
+      function goBack() {
+        /*
+                Do not change selectedSong.
+
+                This allows index.html to return
+                to the song that was playing before
+                the playlist was opened.
+            */
+
+        window.location.href = "index.html";
+      }
+    </script>
+  </body>
+</html>

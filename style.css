@@ -1,0 +1,531 @@
+* {
+    box-sizing: border-box;
+}
+
+html,
+body {
+    margin: 0;
+    padding: 0;
+
+    width: 100%;
+    height: 100%;
+}
+
+body {
+    overflow: hidden;
+
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+
+/* =========================
+   MAIN BACKGROUND
+========================= */
+
+.website {
+
+    width: 100vw;
+    height: 100vh;
+
+    position: relative;
+
+    background-image: url("image/raju mistri.jpg");
+
+    background-size: cover;
+
+    background-position: center;
+
+    background-repeat: no-repeat;
+}
+
+
+/* =========================
+   CLOCK
+========================= */
+
+.clock {
+
+    position: absolute;
+
+    top: 18px;
+    left: 22px;
+
+    color: white;
+
+    font-size: 17px;
+
+    font-weight: 600;
+
+    text-shadow:
+        0 2px 5px rgba(0, 0, 0, 0.5);
+
+    z-index: 10;
+}
+
+
+/* =========================
+   PLAYLIST BUTTON
+========================= */
+
+.playlist-btn {
+
+    position: absolute;
+
+    top: 18px;
+    right: 25px;
+
+    padding: 8px 18px;
+
+    border: 1px solid rgba(255, 255, 255, 0.4);
+
+    border-radius: 8px;
+
+    background: rgba(50, 30, 25, 0.55);
+
+    color: white;
+
+    font-size: 14px;
+
+    font-weight: bold;
+
+    cursor: pointer;
+
+    backdrop-filter: blur(8px);
+
+    -webkit-backdrop-filter: blur(8px);
+
+    transition: 0.2s;
+
+    z-index: 10;
+}
+
+.playlist-btn:hover {
+
+    background: rgba(100, 45, 30, 0.8);
+
+    transform: scale(1.05);
+}
+
+
+/* =========================
+   RAJU MISTRY TITLE
+   RETRO INDIAN MOVIE STYLE
+========================= */
+
+.title {
+
+    position: absolute;
+
+    top: 9%;
+    left: 50%;
+
+    transform: translateX(-50%);
+
+    text-align: center;
+
+    color: #f4dfb0;
+
+    font-family: Georgia, "Times New Roman", serif;
+
+    font-size: clamp(65px, 9vw, 135px);
+
+    font-weight: 900;
+
+    letter-spacing: 4px;
+
+    line-height: 1;
+
+    white-space: nowrap;
+
+    /*
+       Retro dimensional shadow
+    */
+
+    text-shadow:
+
+        2px 2px 0 #6b3218,
+
+        4px 4px 0 #4a200f,
+
+        6px 6px 0 #32150a,
+
+        0 10px 22px rgba(0, 0, 0, 0.65);
+
+    z-index: 5;
+}
+
+
+/*
+   Vintage outline around title
+*/
+
+.title::after {
+
+    content: "राजू मिस्त्री";
+
+    position: absolute;
+
+    left: 0;
+    top: 0;
+
+    width: 100%;
+
+    color: transparent;
+
+    -webkit-text-stroke:
+        2px rgba(255, 235, 180, 0.35);
+
+    z-index: -1;
+}
+
+
+/* =========================
+   MUSIC PLAYER
+========================= */
+
+.music-player {
+
+    position: absolute;
+
+    left: 50%;
+    bottom: 45px;
+
+    transform: translateX(-50%);
+
+    width: min(700px, 90vw);
+
+    min-height: 125px;
+
+    display: flex;
+
+    align-items: center;
+
+    padding: 14px 22px;
+
+    border-radius: 45px;
+
+    /*
+       Only the music box is blurred.
+       The background image stays sharp.
+    */
+
+    background: rgba(75, 38, 27, 0.65);
+
+    border: 1px solid rgba(255, 255, 255, 0.25);
+
+    backdrop-filter: blur(12px);
+
+    -webkit-backdrop-filter: blur(12px);
+
+    box-shadow:
+        0 12px 35px rgba(0, 0, 0, 0.35);
+
+    color: white;
+
+    z-index: 20;
+}
+
+
+/* =========================
+   SONG IMAGE
+========================= */
+
+.album-container {
+
+    width: 82px;
+    height: 82px;
+
+    flex-shrink: 0;
+
+    overflow: hidden;
+
+    border-radius: 50%;
+
+    border: 2px solid rgba(255, 255, 255, 0.35);
+
+    box-shadow:
+        0 5px 15px rgba(0, 0, 0, 0.3);
+}
+
+
+.album-container img {
+
+    width: 100%;
+    height: 100%;
+
+    object-fit: cover;
+
+    display: block;
+}
+
+
+/* =========================
+   SONG INFORMATION
+========================= */
+
+.song-info {
+
+    flex: 1;
+
+    min-width: 0;
+
+    margin-left: 18px;
+
+    margin-right: 15px;
+}
+
+
+.song-name {
+
+    font-size: 17px;
+
+    font-weight: bold;
+
+    white-space: nowrap;
+
+    overflow: hidden;
+
+    text-overflow: ellipsis;
+
+    margin-bottom: 7px;
+}
+
+
+.artist {
+
+    font-size: 13px;
+
+    color: rgba(255, 255, 255, 0.7);
+
+    margin-bottom: 10px;
+}
+
+
+/* =========================
+   PROGRESS BAR
+========================= */
+
+.progress-container {
+
+    width: 100%;
+}
+
+
+#progress {
+
+    width: 100%;
+
+    height: 4px;
+
+    appearance: none;
+
+    -webkit-appearance: none;
+
+    background: rgba(255, 255, 255, 0.25);
+
+    border-radius: 10px;
+
+    cursor: pointer;
+}
+
+
+#progress::-webkit-slider-thumb {
+
+    appearance: none;
+
+    -webkit-appearance: none;
+
+    width: 9px;
+    height: 9px;
+
+    border-radius: 50%;
+
+    background: white;
+
+    cursor: pointer;
+}
+
+
+#progress::-moz-range-thumb {
+
+    width: 9px;
+    height: 9px;
+
+    border: none;
+
+    border-radius: 50%;
+
+    background: white;
+
+    cursor: pointer;
+}
+
+
+/* =========================
+   TIME
+========================= */
+
+.time {
+
+    display: flex;
+
+    justify-content: space-between;
+
+    margin-top: 5px;
+
+    font-size: 11px;
+
+    color: rgba(255, 255, 255, 0.75);
+}
+
+
+/* =========================
+   MUSIC CONTROLS
+========================= */
+
+.controls {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 12px;
+}
+
+
+.control-btn {
+
+    width: 32px;
+    height: 32px;
+
+    border: none;
+
+    background: transparent;
+
+    color: white;
+
+    font-size: 16px;
+
+    cursor: pointer;
+
+    opacity: 0.8;
+
+    transition: 0.2s;
+}
+
+
+.control-btn:hover {
+
+    opacity: 1;
+
+    transform: scale(1.1);
+}
+
+
+.play-btn {
+
+    width: 56px;
+    height: 56px;
+
+    border: none;
+
+    border-radius: 50%;
+
+    background: white;
+
+    color: #3d2118;
+
+    font-size: 21px;
+
+    display: flex;
+
+    justify-content: center;
+
+    align-items: center;
+
+    cursor: pointer;
+
+    transition: 0.2s;
+}
+
+
+.play-btn:hover {
+
+    transform: scale(1.08);
+}
+
+
+/* =========================
+   MOBILE
+========================= */
+
+@media (max-width: 600px) {
+
+    .title {
+
+        top: 12%;
+
+        font-size: 60px;
+
+        letter-spacing: 2px;
+    }
+
+
+    .music-player {
+
+        width: 94vw;
+
+        padding: 12px 14px;
+
+        border-radius: 30px;
+    }
+
+
+    .album-container {
+
+        width: 58px;
+        height: 58px;
+    }
+
+
+    .song-info {
+
+        margin-left: 10px;
+
+        margin-right: 5px;
+    }
+
+
+    .song-name {
+
+        font-size: 13px;
+    }
+
+
+    .artist {
+
+        font-size: 10px;
+    }
+
+
+    .play-btn {
+
+        width: 45px;
+        height: 45px;
+
+        font-size: 17px;
+    }
+
+
+    .control-btn {
+
+        font-size: 13px;
+    }
+
+
+    .controls {
+
+        gap: 3px;
+    }
+
+}
